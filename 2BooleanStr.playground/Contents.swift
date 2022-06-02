@@ -3,7 +3,6 @@ import SwiftUI
 // Booleans
 
 
-
 let filename = "paris.jpg"
 print(filename.hasSuffix(".jpg"))
 let hasSuffix = filename.hasSuffix(".jpg")
