@@ -35,14 +35,18 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            RadialGradient(stops: [
-                .init(color: Color(red: 1, green: 1, blue: 1), location: 0.3),
-                .init(color: Color(red: 0.76, green: 0.15, blue: 0.26), location: 0.3),
-            ], center: .top, startRadius: 200, endRadius: 400)
+            AngularGradient(colors: [.red, .green, .blue, .purple, .pink], center: .center)
                 .ignoresSafeArea()
+                .opacity(0.8)
+//            RadialGradient(stops: [
+//                .init(color: Color(red: 1, green: 1, blue: 1), location: 0.3),
+//                .init(color: Color(red: 0.76, green: 0.15, blue: 0.26), location: 0.3),
+//            ], center: .top, startRadius: 200, endRadius: 400)
+//                .ignoresSafeArea()
             VStack{
                 Text("Choose the Flag of")
                     .font(.headline)
+                    .foregroundStyle(.secondary)
                 Text(countries[correctIndex])
                     .font(.largeTitle.bold())
                 VStack(spacing: 10) {
@@ -57,7 +61,8 @@ struct ContentView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 20)
-                
+                .shadow(radius: 5)
+//                .foregroundStyle(.secondary)
                 .background(.regularMaterial)
                 .cornerRadius(10)
                 .alert(alertTitle, isPresented: $showAlert) {
