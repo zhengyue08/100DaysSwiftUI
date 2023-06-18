@@ -16,7 +16,7 @@ struct ContentView: View {
 
     @FocusState private var amountIsFocused: Bool
     
-    let tipPercentages = 1..<101
+    let tipPercentages = 0..<101
     
     var tipValue :Double {
         return checkAmount / 100.0 * Double(tipPercentage)
@@ -62,7 +62,7 @@ struct ContentView: View {
                     Text (totalAmount, format: currencyType)
                 } header: {
                     Text ("Total amount")
-                }
+                }.foregroundColor( (tipPercentage == 0) ? .red: Color.primary)
                 
                 Section {
                     Text(perPerson, format: currencyType)
