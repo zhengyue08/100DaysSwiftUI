@@ -76,7 +76,8 @@ struct ContentView: View {
 //                .foregroundStyle(.secondary)
                 .background(.regularMaterial)
                 .cornerRadius(10)
-                .alert(alertTitle, isPresented: $showAlert) {
+                .alert(alertTitle, isPresented: $showAlert)
+                {
                     if correct || (!correct && !tryAgain){
                         // next Question
                         Button("Continue") {
