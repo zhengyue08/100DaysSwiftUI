@@ -43,16 +43,18 @@ struct ContentView: View {
     
     @State private var finished: Bool = false
     
+    @State private var rotateAngle = [0.0, 0.0, 0.0, 0.0]
+    @State private var opacity = [1.0, 1.0, 1.0, 1.0]
+    @State private var scaleAnimate = [1.0, 1.0, 1.0, 1.0]
+
+
     var body: some View {
+        
         ZStack {
             AngularGradient(colors: [.red, .green, .blue, .purple, .pink], center: .center)
                 .ignoresSafeArea()
                 .opacity(0.8)
-//            RadialGradient(stops: [
-//                .init(color: Color(red: 1, green: 1, blue: 1), location: 0.3),
-//                .init(color: Color(red: 0.76, green: 0.15, blue: 0.26), location: 0.3),
-//            ], center: .top, startRadius: 200, endRadius: 400)
-//                .ignoresSafeArea()
+
             VStack{
                 Text("Choose the Flag of")
                     .font(.headline)
@@ -68,7 +70,15 @@ struct ContentView: View {
 //                                .cornerRadius(10)
 //                                .shadow(radius: 5)
                             FlagImage(country: countries[number])
+                                
                         }
+                        .opacity(opacity[number])
+                        .scaleEffect(scaleAnimate[number])
+                        .rotation3DEffect(.degrees(rotateAngle[number]), axis: (x: 0, y: 1, z: 0))
+                        .animation(.interpolatingSpring(stiffness: 3, damping: 1), value: rotateAngle[number])
+                        .animation(.easeOut, value: scaleAnimate)
+                        .animation(.default, value: opacity[number])
+
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -114,7 +124,7 @@ struct ContentView: View {
             message = "Congratulation🥳, you got it"
             score += 1
         } else {
-            if (index != correctIndex) && (tryTimes < 1) {
+            if (index != correctIndex) && (tryTimes < 0) {
                 correct = false
                 tryAgain = true
                 alertTitle = "False"
@@ -126,7 +136,13 @@ struct ContentView: View {
                 message = "Sorry, you missed a point"
             }
         }
-        
+        rotateAngle[index] += 360
+        for num in 0..<4 {
+            if  num != index {
+                opacity[num] -= 0.5
+                scaleAnimate[num] -= 0.2
+            }
+        }
         showAlert = true
         print(finished)
     }
@@ -141,6 +157,12 @@ struct ContentView: View {
             answeredQuestions += 1
         }
         
+        for num in 0..<4 {
+            opacity[num] = 1.0
+        }
+        for num in 0..<4 {
+            scaleAnimate[num] = 1.0
+        }
     }
     
     func nextSet () {

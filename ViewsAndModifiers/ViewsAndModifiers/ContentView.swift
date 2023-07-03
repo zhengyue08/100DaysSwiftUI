@@ -49,7 +49,22 @@ struct ContentView: View {
         VStack{
             Text("ViewsAndModifiers").titleStyle()
             GridView(rows: 3, columns: 4) {row, column in
-                Text("R:\(row) C:\(column)")
+                Text("R:\(row), C:\(column)")
+//                Text("R:1 C:1")
+//                Text("R:1 C:1")
+//                Text("R:1 C:1")
+//                Text("R:1 C:1")
+//
+//                Text("R:1 C:1")
+//                Text("R:1 C:1")
+//                Text("R:1 C:1")
+//                Text("R:1 C:1")
+//
+//                Text("R:1 C:1")
+//                Text("R:1 C:1")
+//                Text("R:1 C:1")
+//                Text("R:1 C:1")
+
             }
         }
     }
